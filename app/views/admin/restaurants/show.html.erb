@@ -4,6 +4,8 @@
       <h1><%= @restaurant.name %></h1>
     </div>
 
+    <div>[<%= @restaurant.category.name %>]</div>
+
     <div class="col-md-4">
       <%= image_tag @restaurant.image.url, width: '600px' if @restaurant.image? %>
       <br>
