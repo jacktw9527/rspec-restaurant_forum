@@ -1,1 +1,30 @@
-<h1>餐廳前台</h1>
+<div class="container">
+  <div class="row">
+    <!-- restaurants list, 有多寫 restaurant-item 的 class style -->
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="restaurant-item">
+          <%= link_to restaurant_path(restaurant) do %> 
+            <% for img_id in 0..20 %>
+              <% if image_path(restaurant.image.url).include?('/'+img_id.to_s+'.jpg') %>
+                <%= image_tag('/seed_image/'+img_id.to_s+'.jpg', class: "image-responsive center-block") %>
+              <% end %>
+            <% end %>
+          <% end %>
+            <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+            <div class="caption">
+              <p class="label label-default"><%= restaurant.category.name %></p>
+              <p><%= truncate(restaurant.description, length: 80) %></p>
+            </div>
+        </div>
+      </div>
+    <% end %>
+
+
+  <!-- 有 generate kaminari paginate bootstrap style -->
+  <div class="text-center">
+    <%= paginate @restaurants %>
+  </div>
+
+  </div> 
+</div>
