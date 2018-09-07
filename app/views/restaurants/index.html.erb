@@ -4,12 +4,8 @@
     <% @restaurants.each do |restaurant| %>
       <div class="col-sm-6 col-md-4">
         <div class="restaurant-item">
-          <%= link_to restaurant_path(restaurant) do %> 
-            <% for img_id in 0...20 %>
-              <% if image_path(restaurant.image.url).include?('/'+img_id.to_s+'.jpg') %>
-                <%= image_tag('/seed_image/'+img_id.to_s+'.jpg', class: "image-responsive center-block") %>
-              <% end %>
-            <% end %>
+          <%= link_to restaurant_path(restaurant) do %>  
+            <%= image_tag(restaurant.image.url, class: "image-responsive center-block") %>    
           <% end %>
             <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
             <div class="caption">
