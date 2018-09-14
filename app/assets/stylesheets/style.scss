@@ -22,3 +22,25 @@
   float: none;
   display: inline-block;
 }
+
+.my-restaurant{
+  display: inline-block;
+  margin: auto 5px;
+  text-align: center;
+}
+
+.my-restaurant > div {
+  height: 60px;
+}
+
+.my-restaurant img{
+  max-height: 100%;
+}
+
+.panel a:hover .my-restaurant{
+  background-color: #eee;
+}
+
+a, a:link, a:visited, a:focus, a:hover, a:active{
+  text-decoration:none; 
+}

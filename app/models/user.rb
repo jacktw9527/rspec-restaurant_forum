@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :comments
+  has_many :restaurants, through: :comments
+  validates_presence_of :name
   mount_uploader :avatar, AvatarUploader
 
   # Include default devise modules. Others available are:

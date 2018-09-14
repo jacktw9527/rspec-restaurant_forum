@@ -25,6 +25,33 @@
     </div>
     <br>
 
+    <!-- 已評論過的餐廳 Panel -->
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">
+        <h2><%= @commented_restaurants.count %> 已評論餐廳</h2>
+      </div>
+ 
+       
+      <div class="panel-body">
+        <% @commented_restaurants.each do |restaurant| %>
+         <%= link_to restaurant_path(restaurant) do %>
+          <div class="my-restaurant">
+            <div>
+              <%= image_tag restaurant.image.url, width: '100px', class: "img-responsive" %>
+            </div>
+
+            <div>
+              <%= restaurant.name %>
+            </div>
+          </div>
+         <% end %>
+        <% end %>
+      </div>
+
+
+      <div class="clearfix"></div>
+    </div>
 
 
     </div>
