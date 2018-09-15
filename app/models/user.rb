@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  has_many :comments, dependent: :destroy
+  
+  # 如果 User 有了評論，就不允許刪除帳號（刪除時拋出 Error） 
+  has_many :comments, dependent: :restrict_with_error
+  
   has_many :restaurants, through: :comments
   validates_presence_of :name
   mount_uploader :avatar, AvatarUploader
