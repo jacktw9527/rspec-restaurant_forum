@@ -1,3 +1,13 @@
+<div class="container">    
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><%= link_to '首頁', root_path %></li>
+      <li role="presentation"><%= link_to '最新動態', feeds_restaurants_path %></li>
+    </ul>
+  </div>
+</div>
+
+
 <div class="container">
   <div class="row">
     <!-- restaurants list, 有多寫 restaurant-item 的 class style -->
@@ -7,6 +17,7 @@
         <li role="presentation"><%= link_to category.name, category_path(category) %></li>
       <% end %>
     </ul>
+
 
     <%= render partial: "shared/restaurant_list" %>
 
