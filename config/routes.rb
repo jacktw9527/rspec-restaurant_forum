@@ -11,7 +11,12 @@ Rails.application.routes.draw do
     member do
       get :dashboard
     end
-    
+
+    # 在 restaurant 樣板選擇「喜歡」或「不喜歡」不需要新的樣板，所以不用 GET
+    member do
+      post :favorite
+      post :unfavorite
+    end
   end
 
   resources :users, only: [:show, :edit, :update]
