@@ -22,6 +22,9 @@
       <%= simple_format @restaurant.description %><br />
       <hr>
       <%= link_to 'Dashboard', dashboard_restaurant_path(params[:id]), class: "btn btn-primary" %>
+      <!-- 收藏餐廳功能 -->
+      <%= link_to 'Favorite', favorite_restaurant_path(@restaurant), method: :post, class: "btn btn-primary" %>
+      <%= link_to 'Unfavorite', unfavorite_restaurant_path(@restaurant), method: :post, class: "btn btn-info" %>
     </div>
 
     <div class="clearfix"></div>
