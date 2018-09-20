@@ -9,6 +9,10 @@ class Restaurant < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites,  source: :user
 
+  #餐廳可以被許多使用者喜歡
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
+
   validates_presence_of :name
   mount_uploader :image, PhotoUploader
 
@@ -16,5 +20,9 @@ class Restaurant < ApplicationRecord
   def is_favorited?(user)
     self.favorited_users.include?(user)
   end
-  
+
+  def is_liked?(user)
+    self.liked_users.include?(user)
+  end
+
 end
