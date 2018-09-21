@@ -22,6 +22,7 @@ class RestaurantsController < ApplicationController
   def favorite
     @restaurant = Restaurant.find(params[:id])
     @restaurant.favorites.create!(user: current_user)
+    @restaurant.count_favorites
     redirect_back(fallback_location: root_path)
   end
 
@@ -29,6 +30,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     favorites = Favorite.where(user: current_user, restaurant: @restaurant)
     favorites.destroy_all
+    @restaurant.count_favorites
     redirect_back(fallback_location: root_path)
   end
 
@@ -43,6 +45,10 @@ class RestaurantsController < ApplicationController
     likes = Like.where(user: current_user, restaurant: @restaurant)
     likes.destroy_all
     redirect_back(fallback_location: root_path)
+  end
+
+  def ranking
+    @ranking_restaurants = Restaurant.order(favorites_count: :desc).limit(10)
   end
 
 end

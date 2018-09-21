@@ -22,6 +22,10 @@ Rails.application.routes.draw do
       post :like
       post :unlike
     end
+
+    collection do
+      get :ranking
+    end
   end
 
   resources :users, only: [:show, :edit, :update]
