@@ -15,6 +15,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :restaurant
 
+  #User可以有很多followships與followings
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
