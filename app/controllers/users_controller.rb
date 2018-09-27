@@ -30,6 +30,12 @@ class UsersController < ApplicationController
   end
 
 
+  def friend_list
+    @user = User.find(params[:id])
+    @added_friends = @user.all_friends.uniq
+  end
+
+
   private
 
   def user_params

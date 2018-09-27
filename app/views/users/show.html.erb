@@ -19,6 +19,7 @@
       <% if current_user == @user %>
         <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
       <% end %>
+      <%= link_to "#{@user.name}的好友", friend_list_user_url, class: "btn btn-primary" %>
     </div>
     
     <div class="clearfix"></div>

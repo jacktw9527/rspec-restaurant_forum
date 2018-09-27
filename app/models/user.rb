@@ -27,6 +27,10 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
+  #User可以有很多friendships與friends
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -43,6 +47,10 @@ class User < ApplicationRecord
 
   def friend?(user)
     self.friends.include?(user)
+  end
+
+  def all_friends
+    self.friends + self.inverse_friends
   end
 
 end

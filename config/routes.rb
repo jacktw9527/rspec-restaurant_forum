@@ -31,7 +31,14 @@ Rails.application.routes.draw do
   resources :followships, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
 
-  resources :users, only: [:show, :edit, :update, :index]
+  resources :users, only: [:show, :edit, :update, :index] do
+    member do
+      get :friend_list
+    end
+  end
+
+
+
   resources :categories, only: :show
   root "restaurants#index"
 
