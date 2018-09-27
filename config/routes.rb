@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   resources :followships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
   resources :users, only: [:show, :edit, :update, :index]
   resources :categories, only: :show
