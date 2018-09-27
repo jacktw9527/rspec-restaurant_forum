@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-
-    <div class="page-header">
+    
+    <div class="page-header col-md-12">
     <div class="col-md-4 col-sm-4">
       <% if @user.avatar? %>
         <%= image_tag(@user.avatar.url, width:'300px', class: "img-responsive center-block") %>
@@ -25,14 +25,61 @@
     </div>
     <br>
 
-    <!-- 已評論過的餐廳 Panel -->
+
+    <!-- User追蹤關係 -->
+    <div class="col-md-4 col-sm-4">
+      <!-- Followings -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><%= current_user.followings.count %> followings</h2>
+        </div>
+
+        <div class="panel-body">
+          <% current_user.followings.each do |following| %>
+            <div>
+              <%= image_tag "https://via.placeholder.com/150x180", class: "img-circular img-responsive" %>
+              <%= link_to user_path(following) do %>
+                 <%= following.name %>
+              <% end %>
+              <hr>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Followers -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><%= current_user.followers.count %> followers</h2>
+        </div>
+
+        <div class="panel-body">
+          <% current_user.followers.each do |follower| %>
+            <div>
+              <%= image_tag "https://via.placeholder.com/150x180", class: "img-circular img-responsive" %>
+              <%= link_to user_path(follower) do %>
+                 <%= follower.name %>
+              <% end %>
+              <hr>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <!-- User「評論過」與「收藏過」的餐廳 -->
+    <div class="col-md-8 col-sm-8">
+    <!-- 評論過的餐廳 -->
     <div class="panel panel-primary">
 
       <div class="panel-heading">
         <h2><%= @commented_restaurants.count %> 已評論餐廳</h2>
       </div>
  
-       
       <div class="panel-body">
         <% @commented_restaurants.each do |restaurant| %>
          <%= link_to restaurant_path(restaurant) do %>
@@ -52,6 +99,37 @@
 
       <div class="clearfix"></div>
     </div>
+
+    <!-- 收藏過的餐廳 -->
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h2><%= @favorited_restaurants.count %> 已收藏餐廳</h2>
+      </div>
+ 
+      <div class="panel-body">
+        <% @favorited_restaurants.each do |restaurant| %>
+         <%= link_to restaurant_path(restaurant) do %>
+          <div class="my-restaurant">
+            <div>
+              <%= image_tag restaurant.image.url, width: '100px', class: "img-responsive" %>
+            </div>
+
+            <div>
+              <%= restaurant.name %>
+            </div>
+          </div>
+         <% end %>
+        <% end %>
+      </div>
+
+
+      <div class="clearfix"></div>
+    </div>
+
+    </div>
+
+
 
 
     </div>
