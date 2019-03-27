@@ -28,6 +28,9 @@ namespace :dev do
     end
     puts "have created fake users"
     puts "now you have #{User.count} users data"
+
+    User.create(email: "root@example.com", password: "12345678", role: "admin", name: "root")
+    puts "Default admin created!"
   end
 
   task fake_comment: :environment do
