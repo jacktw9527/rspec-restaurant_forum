@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:show, :index] do
     resources :comments, only: [:create, :destroy]
 
+    #
+    collection do
+      get :about
+    end
+
     collection do
       get :feeds
     end
@@ -47,5 +52,5 @@ Rails.application.routes.draw do
     resources :categories
     root "restaurants#index"
   end
-  
+
 end
